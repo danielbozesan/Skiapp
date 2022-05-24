@@ -31,5 +31,17 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root2, 300, 275));
         primaryStage.show();
      */
+
+        Parent root4 = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
+
+        primaryStage.setTitle("SkiApp");
+        primaryStage.setScene(new Scene(root4, 300, 275));
+        primaryStage.show();
+
+        Parent root6 = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
+
+        primaryStage.setTitle("SkiApp");
+        primaryStage.setScene(new Scene(root6, 300, 275));
+        primaryStage.show();
     }
 }
