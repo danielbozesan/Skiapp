@@ -33,12 +33,29 @@ public class LoginController {
 
     @FXML
     public void handleLoginAction() {
+        int ok=1;
         /*
         if(!UserService.checkUserLogin(usernameField.getText(), passwordField.getText()))
             loginMessage.setText("Login failed!");
         else
             loginMessage.setText("Login succesful!");
          */
+        if(ok==1){
+            Parent root;
+            try {
+
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("HomeClient.fxml"));
+                Stage stage=new Stage();
+                stage.setTitle("SkiApp");
+                stage.setScene(new Scene(root,600,575));
+                stage.show();
+
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }}
+        else{
         /*
             String r= (String) role.getValue();
             if(UserService.checkUserLogin(usernameField.getText(), passwordField.getText(), (String) r)==1)
@@ -49,37 +66,45 @@ public class LoginController {
                 else
                     loginMessage.setText("Login failed!");
 */
+
         try {
             String r=UserService.getRoleByUsername(usernameField.getText());
             UserService.checkUserLogin(usernameField.getText(), passwordField.getText(), (String) r);
             loginMessage.setText("Login successfully!");
             Parent root;
 
-            // String roleValue =  role;
             String A = new String();
             A="Admin";
 
             if (Objects.equals(role,A))
             {
-                ;
                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeAdmin.fxml"));
                 // etc.
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeClient.fxml"));
+                String username = usernameField.getText();
+                root = (Parent) loader.load();
             }
             else
             {
                 //FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeClient.fxml"));
                 // etc.
-                ;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/openClient.fxml"));
+                root = (Parent) loader.load();
             }
+            Stage stage=new Stage();
+            stage.setTitle("SkiApp");
+            stage.setScene(new Scene(root,600,575));
+            stage.show();
 
-                /* lanseaza in functie de ce se intampla in if uri
-                Stage stage=new Stage();
-                stage.setTitle("SkiApp");
-                stage.setScene(new Scene(root,600,575));
-                stage.show();
-                 */
-        } catch (IncorrectLogin e) {
-            loginMessage.setText(e.getMessage());
         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        catch (IncorrectLogin e) {
+            loginMessage.setText(e.getMessage());
+        }}
     }
 }
