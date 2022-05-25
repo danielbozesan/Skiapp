@@ -5,5 +5,6 @@ E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\exceptions\Could
 E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\exceptions\UsernameAlreadyExistsException.java
 E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\controllers\RegistrationController.java
 E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\Main.java
+E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\exceptions\IncorrectLogin.java
 E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\services\FileSystemService.java
 E:\saf3\SkiApp\src\main\java\org\loose\fis\registration\example\controllers\WelcomeController.java

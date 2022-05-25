@@ -1,8 +1,0 @@
-org\loose\fis\registration\example\model\User.class
-org\loose\fis\registration\example\exceptions\UsernameAlreadyExistsException.class
-org\loose\fis\registration\example\exceptions\CouldNotWriteUsersException.class
-org\loose\fis\registration\example\services\FileSystemService.class
-org\loose\fis\registration\example\controllers\LoginController.class
-org\loose\fis\registration\example\services\UserService.class
-org\loose\fis\registration\example\controllers\RegistrationController.class
-org\loose\fis\registration\example\Main.class
