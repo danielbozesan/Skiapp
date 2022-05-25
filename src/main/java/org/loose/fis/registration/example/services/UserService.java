@@ -1,11 +1,14 @@
 package org.loose.fis.registration.example.services;
 
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.apache.commons.io.FileUtils;
 import org.loose.fis.registration.example.exceptions.CouldNotWriteUsersException;
+import org.loose.fis.registration.example.exceptions.IncorrectLogin;
 import org.loose.fis.registration.example.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.registration.example.model.User;
+
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -21,7 +24,7 @@ import org.dizitart.no2.objects.ObjectRepository;
 
 public class UserService {
 
-
+    private static ObjectRepository<User> userRepository;
     private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
     private static ObjectRepository<User> users;
@@ -61,12 +64,37 @@ public class UserService {
         }
     }
 
-    public static boolean checkUserLogin(String username, String password){
-        for (User user : users.find()) {
-            if (Objects.equals(username, user.getUsername()) && Objects.equals(password, user.getPassword()))
-                return true;
+    public static String getRoleByUsername(String username) throws IncorrectLogin{
+        String role= new String();
+        int ok=0;
+        for(User user:userRepository.find()){
+            if(Objects.equals(user.getUsername(),username)){
+                role=user.getRole();
+                ok=1;}
         }
-        return false;
+        if(ok==0)
+            throw new IncorrectLogin(username);
+
+        return role;
+    }
+
+    public static int checkUserLogin(String username, String password, String role) throws IncorrectLogin
+    {
+        String pass=encodePassword(username,password);
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername()) && Objects.equals(role,user.getRole()) && pass.equals(user.getPassword()))
+            {
+                if(role.equals("Client"))
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+        }
+        throw new IncorrectLogin(username);
     }
 
     private static void persistUsers() {

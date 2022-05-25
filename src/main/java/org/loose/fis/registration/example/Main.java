@@ -19,17 +19,9 @@ public class Main extends Application {
         //UserService.loadUsersFromFile();
         UserService.initDatabase();
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Welcome.fxml"));
         primaryStage.setTitle("SkiApp");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 600, 575));
         primaryStage.show();
-
-    /*
-        Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
-        primaryStage.setTitle("SkiApp");
-        primaryStage.setScene(new Scene(root2, 300, 275));
-        primaryStage.show();
-     */
     }
 }
